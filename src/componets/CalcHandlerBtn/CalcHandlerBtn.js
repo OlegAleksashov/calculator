@@ -1,4 +1,5 @@
 import React from 'react'
+import './CalcHandlerBtn.css'
 
 const CalcHandlerBtn = ({title, handler}) => {
   return (

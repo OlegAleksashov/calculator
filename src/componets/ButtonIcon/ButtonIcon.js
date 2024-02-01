@@ -3,7 +3,7 @@ import { ThemeContext } from '../../context/ThemeContext';
 import './ButtonIcon.css'
 
 export const ButtonIcon = () => {
-    const [ theme, setTheme ] = useContext(ThemeContext);
+    const { theme, setTheme } = useContext(ThemeContext);
 
     return (
       <button 
