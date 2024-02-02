@@ -4,12 +4,15 @@ import CalcHandlerBtn from '../CalcHandlerBtn/CalcHandlerBtn'
 import InputValue from '../InputValue/InputValue';
 import { CalculationContext } from '../../context/CalculationContext';
 import { ButtonIcon } from '../ButtonIcon/ButtonIcon';
-import ButtonNumber from '../ButtonNumber/ButtonNumber';
+import ButtonDeleteOne from '../ButtonDeleteOne/ButtonDeleteOne';
 
 const Calculation = () => {
   const { firstNumber, 
+          handleDeleteOne,
           setFirstNumdber, 
           handleDelete,
+          secondNumber,
+          setSecondNumdber,
           handleDevide,
           handleMinus,
           handleMultiply,
@@ -22,30 +25,34 @@ const Calculation = () => {
   return (
     <div className='calc'>
       <ButtonIcon/>
-      <InputValue value={firstNumber} handler={(event) => setFirstNumdber(event.target.value)}/>
+      <InputValue value={firstNumber} handler={setFirstNumdber}/>
       <CalcHandlerBtn title={'C'} handler={handleDelete}/>
-      <CalcHandlerBtn title={'<<<'} handler={() => {}}/>
-      <CalcHandlerBtn title={'*'} handler={handleMultiply}/>
-      <CalcHandlerBtn title={'/'} handler={handleDevide}/>
+      {/* <ButtonDeleteOne title={'<<<'} handler={() => {
+        handleDeleteOne()}}
+        value={firstNumber}
+        /> */}
+      <ButtonDeleteOne title={'<<<'} handler={handleDeleteOne}/>
+      <CalcHandlerBtn title={'*'} handler={handleDrawNumber}/>
+      <CalcHandlerBtn title={'/'} handler={handleDrawNumber}/>
       <br/>
-      <ButtonNumber title={'7'} handler={handleDrawNumber}/>
-      <ButtonNumber title={'8'} handler={handleDrawNumber}/>
-      <ButtonNumber title={'9'} handler={handleDrawNumber}/>
-      <CalcHandlerBtn title={'+'} handler={handlePlus}/>
+      <CalcHandlerBtn  title={'7'} handler={handleDrawNumber}/>
+      <CalcHandlerBtn  title={'8'} handler={handleDrawNumber}/>
+      <CalcHandlerBtn title={'9'} handler={handleDrawNumber}/>
+      <CalcHandlerBtn title={'+'} handler={handleDrawNumber}/>
       <br/>
-      <ButtonNumber title={'4'} handler={handleDrawNumber}/>
-      <ButtonNumber title={'5'} handler={handleDrawNumber}/>
-      <ButtonNumber title={'6'} handler={handleDrawNumber}/>
-      <CalcHandlerBtn title={'-'} handler={handleMinus}/>
+      <CalcHandlerBtn  title={'4'} handler={handleDrawNumber}/>
+      <CalcHandlerBtn  title={'5'} handler={handleDrawNumber}/>
+      <CalcHandlerBtn  title={'6'} handler={handleDrawNumber}/>
+      <CalcHandlerBtn title={'-'} handler={handleDrawNumber}/>
       <br/>
-      <ButtonNumber title={'1'} handler={handleDrawNumber}/>
-      <ButtonNumber title={'2'} handler={handleDrawNumber}/>
-      <ButtonNumber title={'3'} handler={handleDrawNumber}/>
+      <CalcHandlerBtn  title={'1'} handler={handleDrawNumber}/>
+      <CalcHandlerBtn  title={'2'} handler={handleDrawNumber}/>
+      <CalcHandlerBtn  title={'3'} handler={handleDrawNumber}/>
       <CalcHandlerBtn title={'%'} handler={handlePercentage}/>
       <br/>
       <CalcHandlerBtn title={'='} handler={() => {}}/>
-      <ButtonNumber title={'0'} handler={handleDrawNumber}/>
-      <CalcHandlerBtn title={'.'} handler={handlePercentage}/>
+      <CalcHandlerBtn  title={'0'} handler={handleDrawNumber}/>
+      <CalcHandlerBtn title={'.'} handler={handleDrawNumber}/>
       <Results result={result}/>
     </div>
   )

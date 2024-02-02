@@ -4,8 +4,8 @@ import React from 'react'
 export const CalculationContext = createContext();
 
 export const CalculationProvider = ({children}) => {
-  const [firstNumber, setFirstNumdber] = useState('');
-  const [secondNumber, setSecondNumdber] = useState(0);
+  const [firstNumber, setFirstNumdber] = useState([]);
+  const [secondNumber, setSecondNumdber] = useState([]);
   const [result, setResult] = useState(0);
 
   const handleMultiply = () => {
@@ -28,6 +28,11 @@ export const CalculationProvider = ({children}) => {
     setResult(firstNumber / 100);
   }
 
+  const handleDeleteOne = () => {
+    setFirstNumdber(firstNumber.slice(0, firstNumber.length - 1))
+    console.log(firstNumber);
+  }
+
   const handleDelete = () => {
     setFirstNumdber('');
     setSecondNumdber(0);
@@ -36,12 +41,16 @@ export const CalculationProvider = ({children}) => {
 
   const handleDrawNumber = (number) => {
     setFirstNumdber(firstNumber + number);
+    console.log(firstNumber);
   }
 
   return (
     <CalculationContext.Provider
       value={{
+        handleDeleteOne,
         handleDrawNumber,
+        secondNumber,
+        setSecondNumdber,
         firstNumber,
         setFirstNumdber,
         handleMultiply,

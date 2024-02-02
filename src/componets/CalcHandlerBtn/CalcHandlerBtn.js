@@ -3,7 +3,7 @@ import './CalcHandlerBtn.css'
 
 const CalcHandlerBtn = ({title, handler}) => {
   return (
-    <button className='button' onClick={handler}>{title}</button>
+    <button className='button' onClick={() => {handler(title); console.log(title)}}>{title}</button>
   )
 }
 
