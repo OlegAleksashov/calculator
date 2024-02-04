@@ -3,7 +3,8 @@ import React from 'react'
 const ButtonDeleteOne = ({ value, title, handler }) => {
     return (
         <button className='button' 
-                onClick={() => {handler(value)}}
+                //onClick={() => {handler(value)}}
+                onClick={handler}
         >
           {title}
         </button>

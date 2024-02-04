@@ -4,62 +4,57 @@ import React from 'react'
 export const CalculationContext = createContext();
 
 export const CalculationProvider = ({children}) => {
-  const [firstNumber, setFirstNumdber] = useState([]);
-  const [secondNumber, setSecondNumdber] = useState([]);
-  const [result, setResult] = useState(0);
+  const [result, setResult] = useState([]);
+  const [selectOperator, setSelectOperator] = useState('')
 
-  const handleMultiply = () => {
-    setResult(firstNumber * secondNumber);
-  }
-
-  const handleDevide = () => {
-    setResult(firstNumber / secondNumber);
-  }
-
-  const handlePlus = () => {
-    setResult(+firstNumber + +secondNumber);
-  }
-
-  const handleMinus = () => {
-    setResult(firstNumber - secondNumber);
-  }
+  const handleOperations = () => {
+    let array = [];
+    let arrayResult = [];
+    array = result.toString();
+    if (array.includes('/')) {
+      arrayResult = array.split('/');
+      setResult(arrayResult[0] / arrayResult[1]);
+    } else if (array.includes('*')) {
+      arrayResult = array.split('*');
+      setResult(arrayResult[0] * arrayResult[1]);
+    } else if (array.includes('+')) {
+      arrayResult = array.split('+');
+      setResult(+arrayResult[0] + +arrayResult[1]);
+    } else if (array.includes('-')) {
+      arrayResult = array.split('-');
+      setResult(arrayResult[0] - arrayResult[1]);
+    }
+  };
+  
 
   const handlePercentage = () => {
-    setResult(firstNumber / 100);
+    setResult(result / 100);
   }
 
   const handleDeleteOne = () => {
-    setFirstNumdber(firstNumber.slice(0, firstNumber.length - 1))
-    console.log(firstNumber);
+    setResult(result.slice(0, result.length - 1));
   }
 
   const handleDelete = () => {
-    setFirstNumdber('');
-    setSecondNumdber(0);
     setResult(0);
   }
 
   const handleDrawNumber = (number) => {
-    setFirstNumdber(firstNumber + number);
-    console.log(firstNumber);
+    setResult(result + number);
   }
 
   return (
     <CalculationContext.Provider
       value={{
         handleDeleteOne,
-        handleDrawNumber,
-        secondNumber,
-        setSecondNumdber,
-        firstNumber,
-        setFirstNumdber,
-        handleMultiply,
+        handleDrawNumber, 
         handleDelete,
-        handleDevide,
-        handleMinus,
-        handlePlus,
         handlePercentage,
-        result
+        result,
+        handleOperations,
+        selectOperator,
+        setSelectOperator,
+        setResult
       }}
     >
       {children}

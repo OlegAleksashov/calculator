@@ -23,3 +23,7 @@ body.dark {
 input {
   margin-left: 1em;
 }
+
+#output {
+  font-weight: bold;
+}

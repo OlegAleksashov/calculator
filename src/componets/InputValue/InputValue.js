@@ -1,7 +1,7 @@
 import React from 'react'
 import './InputValue.css'
 
-const InputValue = ({value, handler, title}) => {
+const InputValue = ({ value, handler }) => {
 
  return (
    <div className='input'>
