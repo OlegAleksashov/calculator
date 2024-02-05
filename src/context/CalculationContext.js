@@ -5,7 +5,7 @@ export const CalculationContext = createContext();
 
 export const CalculationProvider = ({children}) => {
   const [result, setResult] = useState([]);
-  const [selectOperator, setSelectOperator] = useState('')
+  const [selectOperator, setSelectOperator] = useState([])
 
   const handleOperations = () => {
     let array = [];
@@ -26,7 +26,6 @@ export const CalculationProvider = ({children}) => {
     }
   };
   
-
   const handlePercentage = () => {
     setResult(result / 100);
   }
@@ -36,12 +35,23 @@ export const CalculationProvider = ({children}) => {
   }
 
   const handleDelete = () => {
-    setResult(0);
+    setResult('');
   }
 
-  const handleDrawNumber = (number) => {
-    setResult(result + number);
-  }
+  const handleDrawNumber = (input) => {
+    const operators = ['/', '*', '+', '-', '%'];
+  
+    if (operators.includes(input)) {
+      if (operators.includes(result[result.length - 1])) {
+        setResult(result.slice(0, result.length - 1) + input);
+      } else {
+        setResult(result + input);
+      }
+    } else {
+      setResult(result + input);
+    }
+  };
+
 
   return (
     <CalculationContext.Provider
