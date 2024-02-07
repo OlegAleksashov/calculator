@@ -7,24 +7,31 @@ export const CalculationProvider = ({children}) => {
   const [result, setResult] = useState([]);
   const [selectOperator, setSelectOperator] = useState([])
 
+  // const handleOperations = () => {
+  //   let array = [];
+  //   let arrayResult = [];
+  //   array = result.toString();
+  //   if (array.includes('/')) {
+  //     arrayResult = array.split('/');
+  //     setResult(arrayResult[0] / arrayResult[1]);
+  //   } else if (array.includes('*')) {
+  //     arrayResult = array.split('*');
+  //     setResult(arrayResult[0] * arrayResult[1]);
+  //   } else if (array.includes('+')) {
+  //     arrayResult = array.split('+');
+  //     setResult(+arrayResult[0] + +arrayResult[1]);
+  //   } else if (array.includes('-')) {
+  //     arrayResult = array.split('-');
+  //     setResult(arrayResult[0] - arrayResult[1]);
+  //   }
+  // };
+
   const handleOperations = () => {
-    let array = [];
-    let arrayResult = [];
-    array = result.toString();
-    if (array.includes('/')) {
-      arrayResult = array.split('/');
-      setResult(arrayResult[0] / arrayResult[1]);
-    } else if (array.includes('*')) {
-      arrayResult = array.split('*');
-      setResult(arrayResult[0] * arrayResult[1]);
-    } else if (array.includes('+')) {
-      arrayResult = array.split('+');
-      setResult(+arrayResult[0] + +arrayResult[1]);
-    } else if (array.includes('-')) {
-      arrayResult = array.split('-');
-      setResult(arrayResult[0] - arrayResult[1]);
-    }
-  };
+     let array = [];
+     array = result.toString();
+     // eslint-disable-next-line no-eval
+     setResult(eval(array))
+  }
   
   const handlePercentage = () => {
     setResult(result / 100);
