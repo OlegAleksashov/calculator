@@ -2,3 +2,9 @@
     background-color: var(--button-background-color);
     color: var(--button-text-color);
 }
+
+.button:hover {
+    background-color: var(--button-hover-background-color);
+    color: var(--button-hover-color);
+    box-shadow: var(--button-hover-box-shadow);
+}
