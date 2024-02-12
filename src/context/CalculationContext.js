@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 import React from "react";
 
 export const CalculationContext = createContext();
@@ -6,7 +6,9 @@ export const CalculationContext = createContext();
 export const CalculationProvider = ({ children }) => {
   const [result, setResult] = useState("");
 
-  function handleOperations() {
+  useEffect(() => {}, [result]);
+
+  const handleOperations = () => {
     const operators = {
       "+": { precedence: 1, associativity: "left" },
       "-": { precedence: 1, associativity: "left" },
@@ -33,7 +35,7 @@ export const CalculationProvider = ({ children }) => {
         case "/":
           return operand1 / operand2;
         default:
-          console.log(`Sorry, we are out of ${operator}.`);
+          console.log("Sorry, such operator does not exist");
       }
     }
 
@@ -84,7 +86,7 @@ export const CalculationProvider = ({ children }) => {
 
     const tokens = result.match(/(\d+(\.\d+)?|\S)/g);
     setResult(evaluateExpression(tokens));
-  }
+  };
 
   const handlePercentage = () => {
     setResult(result / 100);
@@ -103,8 +105,12 @@ export const CalculationProvider = ({ children }) => {
     setResult("");
   };
 
+  const handleFromKeyBoard = (input) => {
+    setResult(input.target.value);
+  };
+
   const handleDrawNumber = (input) => {
-    const operators = ["/", "*", "+", "-", "%"];
+    const operators = ["/", "*", "+", "-", "%", "."];
 
     if (operators.includes(input)) {
       if (operators.includes(result[result.length - 1])) {
@@ -120,6 +126,7 @@ export const CalculationProvider = ({ children }) => {
   return (
     <CalculationContext.Provider
       value={{
+        handleFromKeyBoard,
         handleDeleteOne,
         handleDrawNumber,
         handleDelete,

@@ -1,15 +1,18 @@
-import React from 'react'
-import './CalcHandlerBtn.css'
+import React from "react";
+import "./CalcHandlerBtn.css";
 
-const CalcHandlerBtn = ({title, handler}) => {
+const CalcHandlerBtn = ({ title, handler }) => {
   return (
-    <button className='button' 
-            onClick={() => {handler(title); console.log(title)}}
-            //onClick={handler}
+    <button
+      className="button"
+      onClick={() => {
+        handler(title);
+        console.log(title);
+      }}
     >
-       {title}
+      {title}
     </button>
-  )
-}
+  );
+};
 
-export default CalcHandlerBtn
+export default CalcHandlerBtn;
