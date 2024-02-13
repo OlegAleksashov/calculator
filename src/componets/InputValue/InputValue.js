@@ -1,7 +1,7 @@
 import React from "react";
 import "./InputValue.css";
 
-const InputValue = ({ value, handler }) => {
+const InputValue = ({ value, handler, func }) => {
   return (
     <div className="input">
       <textarea
@@ -9,8 +9,9 @@ const InputValue = ({ value, handler }) => {
         cols={40}
         rows={12}
         value={value}
-        onChange={handler}
+        onChange={func}
         placeholder="0"
+        onKeyDown={handler}
       />
     </div>
   );

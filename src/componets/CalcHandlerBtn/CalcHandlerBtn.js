@@ -7,7 +7,6 @@ const CalcHandlerBtn = ({ title, handler }) => {
       className="button"
       onClick={() => {
         handler(title);
-        console.log(title);
       }}
     >
       {title}

@@ -1,12 +1,10 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState } from "react";
 import React from "react";
 
 export const CalculationContext = createContext();
 
 export const CalculationProvider = ({ children }) => {
   const [result, setResult] = useState("");
-
-  useEffect(() => {}, [result]);
 
   const handleOperations = () => {
     const operators = {
@@ -84,8 +82,12 @@ export const CalculationProvider = ({ children }) => {
       return evaluationStack[0];
     }
 
-    const tokens = result.match(/(\d+(\.\d+)?|\S)/g);
-    setResult(evaluateExpression(tokens));
+    try {
+      const tokens = result.match(/(\d+(\.\d+)?|\S)/g);
+      setResult(evaluateExpression(tokens));
+    } catch (err) {
+      setResult("Type next calculations!");
+    }
   };
 
   const handlePercentage = () => {
@@ -93,7 +95,6 @@ export const CalculationProvider = ({ children }) => {
   };
 
   const handleDeleteOne = () => {
-    console.log(result);
     if (typeof result == "number") {
       setResult("");
     } else {
@@ -106,26 +107,40 @@ export const CalculationProvider = ({ children }) => {
   };
 
   const handleFromKeyBoard = (input) => {
-    setResult(input.target.value);
+    handleDrawNumber(input.key);
+  };
+
+  const handlefunc = (e) => {
+    setResult(e.target.value);
   };
 
   const handleDrawNumber = (input) => {
     const operators = ["/", "*", "+", "-", "%", "."];
 
+    if (input === "Enter") {
+      handleOperations();
+    }
+
+    if (input === "Backspace") {
+      handleDeleteOne();
+    }
+
     if (operators.includes(input)) {
       if (operators.includes(result[result.length - 1])) {
-        setResult(result.slice(0, result.length - 1) + input);
+        setResult((prevValue) => prevValue.slice(0, -1) + input);
       } else {
-        setResult(result + input);
+        setResult((prevValue) => prevValue + input);
       }
     } else {
-      setResult(result + input);
+      setResult((prevValue) => prevValue + input);
     }
+    console.log(result);
   };
 
   return (
     <CalculationContext.Provider
       value={{
+        handlefunc,
         handleFromKeyBoard,
         handleDeleteOne,
         handleDrawNumber,

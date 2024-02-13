@@ -7,6 +7,7 @@ import ButtonDeleteOne from "../ButtonDeleteOne/ButtonDeleteOne";
 
 const Calculation = () => {
   const {
+    handlefunc,
     handleFromKeyBoard,
     handleDeleteOne,
     handleDelete,
@@ -19,7 +20,11 @@ const Calculation = () => {
   return (
     <div className="calc">
       <ButtonIcon />
-      <InputValue value={result} handler={handleFromKeyBoard} />
+      <InputValue tipt="text" 
+                  value={result} 
+                  handler={handleFromKeyBoard}
+                  onKeyDown={handlefunc} 
+      />
       <CalcHandlerBtn title={"C"} handler={handleDelete} />
       <ButtonDeleteOne title={"CE"} handler={handleDeleteOne} />
       <CalcHandlerBtn title={"*"} handler={handleDrawNumber} />
