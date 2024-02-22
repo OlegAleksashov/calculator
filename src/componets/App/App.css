@@ -1,14 +1,14 @@
 body {
-  --button-background-color: gray;
-  --button-text-color: white;
-  --button-hover-box-shadow: 0 0 40px #80a0bf;
-  --button-hover-color: #71d5ec;
-  --button-hover-background-color: transparent;
   background-color: #111827;
   color: white;
 }
 
-body.dark {
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.dark {
   --button-background-color: white;
   --button-text-color: black;
   --button-hover-box-shadow: 0 0 40px #111827;
@@ -18,11 +18,21 @@ body.dark {
   color: black;
 }
 
+.light {
+  --button-background-color: gray;
+  --button-text-color: white;
+  --button-hover-box-shadow: 0 0 40px #80a0bf;
+  --button-hover-color: #71d5ec;
+  --button-hover-background-color: transparent;
+  background-color: #111827;
+  color: white;
+}
+
 #root {
   font-size: 1.5em;
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 0;
   text-align: center;
 }
 
