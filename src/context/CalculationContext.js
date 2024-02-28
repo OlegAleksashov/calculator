@@ -107,7 +107,14 @@ export const CalculationProvider = ({ children }) => {
   };
 
   const handleFromKeyBoard = (input) => {
-    handleDrawNumber(input.key);
+    const validInputs = /^[0-9+\-*/%.]*$/;
+    if (input.key === "Enter") {
+      handleOperations();
+    } else if (input.key === "Backspace") {
+      handleDeleteOne();
+    } else if (validInputs.test(input.key)) {
+      handleDrawNumber(input.key);
+    }
   };
 
   const handlefunc = (e) => {
@@ -116,14 +123,6 @@ export const CalculationProvider = ({ children }) => {
 
   const handleDrawNumber = (input) => {
     const operators = ["/", "*", "+", "-", "%", "."];
-
-    if (input === "Enter") {
-      handleOperations();
-    }
-
-    if (input === "Backspace") {
-      handleDeleteOne();
-    }
 
     if (operators.includes(input)) {
       if (operators.includes(result[result.length - 1])) {
