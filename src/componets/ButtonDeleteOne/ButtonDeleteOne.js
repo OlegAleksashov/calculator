@@ -1,14 +1,11 @@
-import React from 'react'
+import React from "react";
 
-const ButtonDeleteOne = ({ value, title, handler }) => {
-    return (
-        <button className='button' 
-                //onClick={() => {handler(value)}}
-                onClick={handler}
-        >
-          {title}
-        </button>
-      )
-}
+const ButtonDeleteOne = ({ title, handler }) => {
+  return (
+    <button className="button" onClick={handler}>
+      {title}
+    </button>
+  );
+};
 
-export default ButtonDeleteOne
+export default ButtonDeleteOne;

@@ -8,8 +8,12 @@ export const ButtonIcon = () => {
   const { theme, toggleDarkMode } = useContext(ThemeContext);
 
   return (
-    <button className="button" onClick={toggleDarkMode}>
-      {theme === "dark" ? <BedtimeRoundedIcon /> : <Brightness5Icon />}
-    </button>
+    <>
+      <>
+        <button className="button" onClick={toggleDarkMode}>
+          {theme === "dark" ? <BedtimeRoundedIcon /> : <Brightness5Icon />}
+        </button>
+      </>
+    </>
   );
 };
