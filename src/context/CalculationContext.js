@@ -91,7 +91,12 @@ export const CalculationProvider = ({ children }) => {
   };
 
   const handlePercentage = () => {
-    setResult(result / 100);
+    const validInputs = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, "."];
+    if (validInputs.includes(result)) {
+      setResult(result / 100);
+    } else {
+      return false;
+    }
   };
 
   const handleDeleteOne = () => {
@@ -117,29 +122,32 @@ export const CalculationProvider = ({ children }) => {
     }
   };
 
-  const handlefunc = (e) => {
+  const handleInput = (e) => {
     setResult(e.target.value);
   };
 
   const handleDrawNumber = (input) => {
     const operators = ["/", "*", "+", "-", "%", "."];
 
-    if (operators.includes(input)) {
-      if (operators.includes(result[result.length - 1])) {
-        setResult((prevValue) => prevValue.slice(0, -1) + input);
+    if (result.length === 0 && operators.includes(input)) {
+      return false;
+    } else {
+      if (operators.includes(input)) {
+        if (operators.includes(result[result.length - 1])) {
+          setResult((prevValue) => prevValue.slice(0, -1) + input);
+        } else {
+          setResult((prevValue) => prevValue + input);
+        }
       } else {
         setResult((prevValue) => prevValue + input);
       }
-    } else {
-      setResult((prevValue) => prevValue + input);
     }
-    console.log(result);
   };
 
   return (
     <CalculationContext.Provider
       value={{
-        handlefunc,
+        handleInput,
         handleFromKeyBoard,
         handleDeleteOne,
         handleDrawNumber,
