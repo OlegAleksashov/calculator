@@ -78,7 +78,6 @@ export const CalculationProvider = ({ children }) => {
           evaluationStack.push(applyOperator(token, operand1, operand2));
         }
       }
-
       return evaluationStack[0];
     }
 
@@ -91,10 +90,11 @@ export const CalculationProvider = ({ children }) => {
   };
 
   const handlePercentage = () => {
-    const validInputs = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, "."];
-    if (validInputs.includes(result)) {
-      setResult(result / 100);
+    const validInputsRegex = /^[0-9.]+$/; // Regular expression to match numbers and dot
+    if (validInputsRegex.test(result)) {
+      setResult(parseFloat(result) / 100); // Convert result to a number before division
     } else {
+      setResult(`Invalid input: ${result}`);
       return false;
     }
   };
